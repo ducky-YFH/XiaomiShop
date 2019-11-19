@@ -1,7 +1,7 @@
 <template>
   <div class="NavBar">
     <span @click="handleBack()" class="back">返回</span>
-    <h1>分类</h1>
+    <h1>{{title}}</h1>
     <router-link tag="a" to="/index" class="icon iconfont icon-search"></router-link>
   </div>
 </template>
@@ -9,6 +9,11 @@
 <script>
 export default {
   name: 'NavBar',
+  props:{
+    title:{
+      type: String,
+    }
+  },
   methods:{
     handleBack(){
       this.$router.back();

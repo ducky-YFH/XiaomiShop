@@ -1,6 +1,6 @@
 <template>
   <div id="Category">
-    <NavBar></NavBar>
+    <NavBar title="手机分类"></NavBar>
     <section>
       <div class="phone-type" @click="switchPhone" ref="phoneType">
         <a

@@ -66,43 +66,40 @@
       <div id="phone-comment">
         <swiper :options="swiperOption">
           <swiper-slide v-for="(item,index) in commentList" :key="index">
-            <div class="c-item">
-              <div class="c-mes">
-                <div class="c-left">
-                  <img
-                    :src="item.avatar"
-                    alt
-                  />
-                  <div>
-                    <p>{{item.user}}</p>
-                    <p>{{item.time}}</p>
+            <router-link tag="div" to="/comment/view">
+              <div class="c-item">
+                <div class="c-mes">
+                  <div class="c-left">
+                    <img :src="item.avatar" alt />
+                    <div>
+                      <p>{{item.user}}</p>
+                      <p>{{item.time}}</p>
+                    </div>
+                  </div>
+                  <div class="c-right">
+                    <van-icon name="good-job-o" />
+                    <span>{{item.like}}</span>
                   </div>
                 </div>
-                <div class="c-right">
-                  <van-icon name="good-job-o" />
-                  <span>{{item.like}}</span>
+                <div class="c-con">
+                  <div>{{item.con}}</div>
+                  <img alt v-for="(imgItem,i) in item.img" :key="i" :src="imgItem" />
+                </div>
+                <div class="c-reply">
+                  <span class="repWho">{{item.repy.name}}：</span>
+                  <span class="repCon">{{item.repy.con}}</span>
                 </div>
               </div>
-              <div class="c-con">
-                <div>{{item.con}}</div>
-                <img
-                  alt
-                  v-for="(imgItem,i) in item.img"
-                  :key="i"
-                  :src="imgItem"
-                />
-              </div>
-              <div class="c-reply">
-                <span class="repWho">{{item.repy.name}}：</span>
-                <span class="repCon">{{item.repy.con}}</span>
-              </div>
-            </div>
+            </router-link>
           </swiper-slide>
         </swiper>
+        <div id="comment-more">
+          <span>更多评论</span>
+          <van-icon name="more-o" />
+        </div>
       </div>
       <!--  -->
     </section>
-
     <!-- +++++++++弹出组件-手机参数+++++++++ -->
     <Option :option="paraOpt" @closeBox="closeBox">
       <ul class="paraSlot">
@@ -503,6 +500,7 @@ export default {
         height: 6rem;
         display: inline-block;
         margin-right: 0.3rem;
+        border-radius: 10px;
         .c-mes {
           display: flex;
           justify-content: space-between;
@@ -562,6 +560,14 @@ export default {
           .repCon {
           }
         }
+      }
+      #comment-more{
+        margin-top: 0.4rem;
+        font-size: 0.45rem;
+        color: #4e72a5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }

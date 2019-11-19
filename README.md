@@ -1,29 +1,12 @@
-# dhsphone
+# XiaomiShop
 
-## Project setup
-```
-npm install
-```
+## 基于个人兴趣爱好搭建的仿小米移动端商城的网站
 
-### Compiles and hot-reloads for development
-```
+## 应用到的技术：vue全家桶、vantUI、swiper
+
+## 目前还在搭建中...
+
+## 运行命令
+```cmd
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

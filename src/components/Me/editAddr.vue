@@ -1,11 +1,6 @@
 <template>
   <div id="editAddr">
-    <van-nav-bar
-      title="添加地址"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-    />
+    <NavBar title="添加地址"></NavBar>
     <van-address-edit
       :area-list="areaList"
       show-postal
@@ -22,6 +17,7 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar'
 export default {
   name:'editAddr',
   data() {
@@ -51,6 +47,9 @@ export default {
     onClickLeft() {
       this.$router.back(-1);
     },
+  },
+  components:{
+    NavBar
   }
 }
 </script>
