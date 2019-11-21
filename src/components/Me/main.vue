@@ -5,7 +5,7 @@
       <div class="avatar">
         <img src="@/assets/images/defaultimg.png" />
       </div>
-      <div class="name">登录/注册</div>
+      <router-link tag="div" to="/state/login" class="name">登录/注册</router-link>
     </header>
     <section>
       <!-- 我的订单 -->
@@ -99,7 +99,7 @@
           <van-icon name="manager-o" />
         </div>
         <div class="right">
-          <span>退出登录</span>
+          <span>退出账号</span>
           <span>
             <van-icon name="arrow" />
           </span>

@@ -13,7 +13,9 @@ import 'swiper/dist/css/swiper.css'
 import BackTop from './components/BackTop'
 import { Checkbox, CheckboxGroup } from 'vant';
 import { Search } from 'vant';
+import { Field } from 'vant';
 
+Vue.use(Field);
 Vue.use(Search);
 Vue.use(Checkbox).use(CheckboxGroup);
 Vue.use(BackTop)

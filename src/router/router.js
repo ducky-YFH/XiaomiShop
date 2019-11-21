@@ -48,7 +48,7 @@ let router = new Router({
     {
       name: 'address',
       path: '/address',
-      component: () =>  import('@/components/Address'),
+      component: () => import('@/components/Address'),
       children: [
         {
           name: 'editAddr',
@@ -84,6 +84,29 @@ let router = new Router({
       name: 'search',
       path: '/search',
       component: () => import('@/components/Search')
+    },
+    {
+      name: 'state',
+      path: '/state',
+      redirect: '/index',
+      component: () => import('@/components/State'),
+      children: [
+        {
+          name: 'login',
+          path: 'login',
+          component: () => import('@/components/State/login')
+        },
+        {
+          name: 'reg',
+          path: 'reg',
+          component: () => import('@/components/State/reg')
+        },
+        {
+          name: 'findpass',
+          path: 'findpass',
+          component: () => import('@/components/State/findPass')
+        }
+      ]
     },
     {
       path: "*",
