@@ -1,12 +1,12 @@
 <template>
   <div id="Me">
-    <router-view></router-view>
     <TabBar></TabBar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import TabBar from "@/components/TabBar"
+import TabBar from '@/components/TabBar/index'
 export default {
   name: 'me',
   data(){
@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#Me{
+  background: #f5f5f5;
+}
 </style>

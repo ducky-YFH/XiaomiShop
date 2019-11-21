@@ -9,9 +9,9 @@
         <i class="icon iconfont icon-search"></i>
         <input type="text" placeholder="搜索商品" />
       </div>
-      <a class="me">
+      <router-link to="/me" class="me">
         <i class="icon iconfont icon-me"></i>
-      </a>
+      </router-link>
     </header>
     <!-- 轮播图 -->
     <div id="phone-carousel">
@@ -71,7 +71,7 @@
           <a class="phone-link" href>
             <img v-lazy="item.src" />
             <p class="phone-name">{{item.name}}</p>
-            <p class="phone-sketch">{{item.ketch}}</p>
+            <p class="phone-sketch">{{item.sketch}}</p>
             <p>
               <span class="price-n">{{item.priceNow}}</span>
               <span class="price-b">{{item.priceBe}}</span>

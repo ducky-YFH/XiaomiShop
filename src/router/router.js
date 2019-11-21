@@ -29,16 +29,43 @@ let router = new Router({
       component: () => import('@/components/Me'),
       children: [
         {
-          path: 'editAddr',
-          name: 'editAddr',
-          component: () => import('@/components/Me/editAddr')
+          name: '',
+          path: '',
+          component: () => import('@/components/Me/main')
+        },
+        {
+          name: 'set',
+          path: 'set',
+          component: () => import('@/components/Me/setting')
         }
+      ]
+    },
+    {
+      name: 'cart',
+      path: '/cart',
+      component: () => import('@/components/Cart')
+    },
+    {
+      name: 'address',
+      path: '/address',
+      component: () =>  import('@/components/Address'),
+      children: [
+        {
+          name: 'editAddr',
+          path: 'editAddr',
+          component: () => import('@/components/Address/editAddr')
+        },
+        {
+          name: 'list',
+          path: 'list',
+          component: () => import('@/components/Address/list')
+        },
       ]
     },
     {
       name: 'comment',
       path: '/comment',
-      redirect:'/index',
+      redirect: '/index',
       component: () => import('@/components/Comment'),
       children: [
         {
@@ -52,6 +79,11 @@ let router = new Router({
           component: () => import("@/components/Comment/list")
         }
       ]
+    },
+    {
+      name: 'search',
+      path: '/search',
+      component: () => import('@/components/Search')
     },
     {
       path: "*",

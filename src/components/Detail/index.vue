@@ -9,6 +9,8 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    <!-- 返回顶部 -->
+    <BackTop></BackTop>
     <section>
       <!-- 手机名称 -->
       <h1 id="phone-name">{{phoneDetail.name}}</h1>
@@ -83,7 +85,11 @@
                 </div>
                 <div class="c-con">
                   <div>{{item.con}}</div>
-                  <img alt v-for="(imgItem,i) in item.img" :key="i" :src="imgItem" />
+                  <div class="c-img">
+                    <div class="c-imgBox" alt v-for="(imgItem,i) in item.img" :key="i">
+                      <img :src="imgItem" />
+                    </div>
+                  </div>
                 </div>
                 <div class="c-reply">
                   <span class="repWho">{{item.repy.name}}：</span>
@@ -93,13 +99,20 @@
             </router-link>
           </swiper-slide>
         </swiper>
-        <div id="comment-more">
-          <span>更多评论</span>
-          <van-icon name="more-o" />
-        </div>
+        <router-link tag="a" to="comment/list">
+          <div id="comment-more">
+            <span>更多评论</span>
+            <van-icon name="more-o" />
+          </div>
+        </router-link>
       </div>
-      <!--  -->
     </section>
+    <!-- 手机图片介绍 -->
+    <div id="phone-introduce">
+      <div v-for="(item,index) in introduceImg" :key="index" class="p-img">
+        <img v-lazy="item" />
+      </div>
+    </div>
     <!-- +++++++++弹出组件-手机参数+++++++++ -->
     <Option :option="paraOpt" @closeBox="closeBox">
       <ul class="paraSlot">
@@ -344,6 +357,15 @@ export default {
             '//i1.mifile.cn/a2/1573700782_6353342_s2016_1512wh!540x5400.jpg'
           ]
         },
+      ],
+      // 手机图片介绍数据
+      introduceImg:[
+        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/2913a25096cdb5ef68d5bb861756e563.jpeg?f=webp&w=1242&h=196&bg=0',
+        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/ce07b93044e955f4d395b1af4f7f873f.jpg?f=webp&w=1080&h=2479&bg=20307',
+        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/cb0eaeabc5030ac1c9282cf9b3c8effa.jpg?f=webp&w=1080&h=2195&bg=151515',
+        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/384da100cbc0058265582b0851c4f2c5.jpg?f=webp&w=1080&h=2419&bg=10101',
+        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/9ec7104e82ddebb8ca5d92f82b736bc7.jpg?f=webp&w=1080&h=1036&bg=F7F7F7',
+        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/fc88fd153c1da1138fd621e00137d3e2.png?w=1080&h=427'
       ]
     }
   },
@@ -360,14 +382,15 @@ export default {
       this.serveOpt.flag = flag
     },
     onAdd(){
-      this.$router.push('/me/editAddr')
+      this.$router.push('/address/editaddr')
     },
     onEdit(item, index) {
       window.console.log('编辑地址',item,index)
+      
     }
   },
   components:{
-    Option
+    Option,
   }
 }
 </script>
@@ -403,6 +426,7 @@ export default {
     }
   }
   section {
+    background: #ffffff;
     padding: 0.4rem;
     #phone-name {
       font-size: 0.6rem;
@@ -537,17 +561,29 @@ export default {
         }
         .c-con {
           margin-top: 0.2rem;
-          div {
+          div:nth-of-type(1) {
             height: 1.2rem;
             line-height: 0.6rem;
             overflow: hidden;
             margin-bottom: 0.4rem;
           }
-          img {
+          .c-img {
+            overflow: hidden;
             height: 1.5rem;
-            width: 1.8rem;
-            border-radius: 10px;
-            margin-right: 0.3rem;
+            width: 100%;
+            display: flex;
+            .c-imgBox {
+              width: 1.8rem;
+              height: 1.5rem;
+              border-radius: 10px;
+              margin-right: 0.3rem;
+              overflow: hidden;
+              img {
+                width: 1.8rem;
+                height: 1.9rem;
+                margin-right: 0.3rem;
+              }
+            }
           }
         }
         .c-reply {
@@ -561,13 +597,23 @@ export default {
           }
         }
       }
-      #comment-more{
+      #comment-more {
         margin-top: 0.4rem;
         font-size: 0.45rem;
         color: #4e72a5;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+    }
+  }
+  #phone-introduce {
+    margin-top: 0.3rem;
+    .p-img {
+      margin-top: -0.28rem;
+      width: 100%;
+      img {
+        width: 100%;
       }
     }
   }

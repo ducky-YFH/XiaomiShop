@@ -29,7 +29,7 @@
 
 <script>
 import TabBar from "@/components/TabBar"
-import NavBar from "@/components/NavBar"
+// import NavBar from "@/components/NavBar"
 
 export default {
   name: 'Category',
@@ -96,13 +96,14 @@ export default {
   },
   components: {
     TabBar,
-    NavBar
+    // NavBar
   }
 }
 </script>
 
 <style lang="scss" scoped>
 section {
+  background: #ffffff;
   .phone-type {
     display: flex;
     justify-content: space-around;
@@ -119,6 +120,7 @@ section {
     }
   }
   .phone-show {
+    background: #ffffff;
   }
 }
 </style>

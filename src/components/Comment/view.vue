@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
 export default {
   name: 'CommentView',
   data(){
@@ -49,9 +48,7 @@ export default {
       },
     }
   },
-  components:{
-    NavBar
-  }
+
 }
 </script>
 

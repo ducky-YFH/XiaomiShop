@@ -9,7 +9,7 @@
         <i class="icon iconfont icon-icon-category"></i>
         <p>分类</p>
       </router-link>
-      <router-link to="/shoppingCar" tag="a" class="nav-item">
+      <router-link to="/cart" tag="a" class="nav-item">
         <i class="icon iconfont icon-ShoppingCart_"></i>
         <p>购物车</p>
       </router-link>
@@ -30,10 +30,12 @@ export default {
 
 <style lang="scss" scoped>
 #TabBar {
+  z-index: 9999;
   background: #ffffff;
   position: fixed;
   width: 100%;
   bottom: 0;
+  border-top: 1px solid #f4f4f4;
   #TabBar-nav {
     display: flex;
     justify-content: space-around;

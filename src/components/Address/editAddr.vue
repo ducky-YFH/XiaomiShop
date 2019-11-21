@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
 export default {
   name:'editAddr',
   data() {
@@ -48,9 +47,6 @@ export default {
       this.$router.back(-1);
     },
   },
-  components:{
-    NavBar
-  }
 }
 </script>
 
