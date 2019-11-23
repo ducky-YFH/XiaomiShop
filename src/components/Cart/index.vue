@@ -2,36 +2,18 @@
   <div id="shoppingCart">
     <NavBar title="购物车"></NavBar>
     <TabBar></TabBar>
-    <div class="car-item first-item">
-      <van-checkbox v-model="checked" checked-color="#ff5722"></van-checkbox>
+    <div v-for="(item,index) in Cart" :key="index" class="car-item first-item">
+      <van-checkbox v-model="item.checked" checked-color="#ff5722"></van-checkbox>
       <div class="car-img">
-        <img src="//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1528440985.59935969.jpg" alt />
+        <img :src="item.img" alt />
       </div>
       <div class="car-main">
-        <p>米家六位插线板 白色</p>
-        <p>售价：49元</p>
-        <div class="counter">
-          <span class="minus">&minus;</span>
-          <span class="num">1</span>
-          <span class="add can">&plus;</span>
-        </div>
-      </div>
-      <div class="car-rubbish">
-        <van-icon name="delete" />
-      </div>
-    </div>
-    <div class="car-item">
-      <van-checkbox v-model="checked" checked-color="#ff5722"></van-checkbox>
-      <div class="car-img">
-        <img src="//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1528440985.59935969.jpg" alt />
-      </div>
-      <div class="car-main">
-        <p>米家六位插线板 白色</p>
-        <p>售价：49元</p>
-        <div class="counter">
-          <span class="minus">&minus;</span>
-          <span class="num">1</span>
-          <span class="add can">&plus;</span>
+        <p>{{item.name +" "+ item.ver.memory +" "+ item.color + " " }}</p>
+        <p>售价：{{ item.ver.money }}元</p>
+        <div class="counter" @click="handleCounter($event,index)">
+          <span :class="[{minus:true}, {can: item.count > 1}]">&minus;</span>
+          <span class="num">{{item.count}}</span>
+          <span :class="[{add:true},{can: item.count < item.ver.max}]">&plus;</span>
         </div>
       </div>
       <div class="car-rubbish">
@@ -39,9 +21,9 @@
       </div>
     </div>
     <div id="car-count">
-      <div class="sum">共2件</div>
+      <div class="sum">共{{ goodsCount }}件</div>
       <div class="money">
-        <span>100</span>
+        <span>{{ money }}</span>
         <span>元</span>
       </div>
       <div class="accounts">去结算</div>
@@ -55,8 +37,45 @@ export default {
   name: 'cart',
   data(){
     return {
-      checked: true
+      money: 0,
+      goodsCount: 0
     }
+  },
+  computed:{
+    Cart(){
+      return this.$store.getters.cart
+    }
+  },
+  methods:{
+    handleCounter(e,index){
+      // 减减
+      if(e.target.classList.contains('minus') && this.Cart[index].count > 1){
+        this.$store.dispatch('minusCount', index)
+        this.countMoney(true, false, index)
+      }
+      // 加加
+      if(e.target.classList.contains('add') && this.Cart[index].count < this.Cart[index].ver.max){
+        this.$store.dispatch('addCount', index)
+        this.countMoney(false, true, index)
+      }
+    },
+    countMoney(minus = false, add = false,  index){
+      if(minus){
+        this.money -= this.Cart[index].ver.money
+        this.goodsCount -= 1
+      }else if(add){
+        this.money += this.Cart[index].ver.money
+        this.goodsCount += 1
+      }else{
+        this.Cart.forEach(item => {
+          this.money += item.count * item.ver.money
+          this.goodsCount += item.count
+        })
+      }
+    }
+  },
+  mounted(){
+    this.countMoney()
   },
   components:{
     TabBar
@@ -81,9 +100,12 @@ export default {
     height: 3rem;
     background: #ffffff;
     justify-content: space-around;
+    .van-checkbox {
+      width: 30px;
+    }
     .car-img {
       width: 2.8rem;
-      margin: 0 0.5rem;
+      margin: 0 0.3rem;
       border: 1px solid #efefef;
       img {
         width: 100%;
@@ -118,6 +140,9 @@ export default {
       }
     }
     .car-rubbish {
+      .van-icon::before {
+        text-align: left;
+      }
     }
   }
   #car-count {

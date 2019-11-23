@@ -103,7 +103,7 @@ export default {
         margin-bottom: 0.4rem;
       }
       img {
-        height: 2.4rem;
+        height: 2.8rem;
         width: 2.4rem;
         margin-right: 0.3rem;
       }

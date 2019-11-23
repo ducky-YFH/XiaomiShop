@@ -17,9 +17,9 @@
     <div id="phone-carousel">
       <van-swipe :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="(item,index) in carouselList" :key="index">
-          <a href>
+          <router-link :to="`/detail/${item.id}`">
             <img :src="item.src" alt />
-          </a>
+          </router-link>
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -62,13 +62,13 @@
     <!-- 手机展示 -->
     <div id="phone-show">
       <div class="phone-hot">
-        <a href>
+        <router-link :to="`/detail/${hotPhone.id}`">
           <img v-lazy="hotPhone.hotSrc" />
-        </a>
+        </router-link>
       </div>
       <ul>
         <li v-for="item in phoneList" :key="item.id">
-          <a class="phone-link" href>
+          <router-link :to="`/detail/${item.id}`" class="phone-link">
             <img v-lazy="item.src" />
             <p class="phone-name">{{item.name}}</p>
             <p class="phone-sketch">{{item.sketch}}</p>
@@ -77,7 +77,7 @@
               <span class="price-b">{{item.priceBe}}</span>
             </p>
             <button class="phone-btn">立即购买</button>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -92,73 +92,35 @@ export default {
   data(){
     return {
       // 导航栏数据
-      carouselList:[
-        {
-          'id':'1',
-          'name':'xiaomiCC9Pro',
-          'src': '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/d051875340405ba2f33d89eb8c1ef400.jpg?thumb=1&w=720&h=360',
-        },
-        {
-          'id':'2',
-          'name': 'xiaomi9Pro',
-          'src':'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/061baf7d438f78c6a072d4b4872c884b.jpg?thumb=1&w=720&h=360',
-        },
-        {
-          'id':'3',
-          'name': 'RedmiBook14',
-          'src':'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/12c58318af41a367c002e5f800adf740.jpg?thumb=1&w=720&h=360',
-        }
-      ],
+      carouselList:[],
       // 部分手机展示数据
-      phoneList:[
-        {
-          'id': '1',
-          'name': 'Redmi Note8 Pro',
-          'src': 'http://cdn.cnbj1.fds.api.mi-img.com/mi-mall/918eafcf051967f9d212a649fad7de28.jpg?thumb=1&w=344&h=280',
-          'sketch': '6400万全场景四摄',
-          'priceNow': '￥1299起',
-          'priceBe': '￥1399',
-        },
-        {
-          'id': '2',
-          'name': 'Redmi Note 8',
-          'src': 'http://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8025107813883a20d3f2d956ad80ea38.jpg?thumb=1&w=344&h=280',
-          'sketch': '千元4800万四摄',
-          'priceNow': '￥1299起',
-          'priceBe': '',
-          'hot': 'true',
-          'hotSrc': '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e32eea5c3c27062019f9ac6434b351df.jpg?thumb=1&w=720&h=440'
-        },
-        {
-          'id': '3',
-          'name': 'Redmi Note 7  Pro',
-          'src': 'http://cdn.cnbj1.fds.api.mi-img.com/mi-mall/905c13a84d8b70c9b9f4e3dee10a9515.jpg?thumb=1&w=344&h=280',
-          'sketch': '索尼4800万超清拍照',
-          'priceNow': '￥1299起',
-          'priceBe': '',
-        },
-        {
-          'id': '4',
-          'name': 'Redmi K20',
-          'src': 'http://i8.mifile.cn/v1/a1/86143982-11ca-5249-e90c-eecfdb9b98a0.webp',
-          'sketch': '弹出全面屏，4800万三摄',
-          'priceNow': '￥1299起',
-          'priceBe': '',
-        },
-      ],
+      phoneList:[],
       // 每日精选
       hotPhone:{}
     }
   },
   methods:{
+    // 获取每日推荐的手机
     getHotphone(){
       this.hotPhone = this.phoneList.find(item => {
         return item.hot
       })
+    },
+    getPhoneList(){
+      this.$axios.get('/api/phonelist').then(res => {
+        if(res.status === 200){
+          window.console.log(res.data)
+          this.carouselList = res.data.carousel
+          this.phoneList = res.data.phoneList
+          this.getHotphone();
+        }else{
+          window.console.log("获取数据失败")
+        }
+      })
     }
   },
-  created(){
-    this.getHotphone()
+  mounted(){
+    this.getPhoneList();
   },
   components:{
     TabBar

@@ -20,7 +20,7 @@ let router = new Router({
     },
     {
       name: 'detail',
-      path: '/detail',
+      path: '/detail/:id',
       component: () => import('@/components/Detail'),
     },
     {
@@ -69,12 +69,12 @@ let router = new Router({
       component: () => import('@/components/Comment'),
       children: [
         {
-          path: 'view',
+          path: 'view/:cid',
           name: 'view',
           component: () => import('@/components/Comment/view')
         },
         {
-          path: 'list',
+          path: 'list/:id',
           name: 'list',
           component: () => import("@/components/Comment/list")
         }

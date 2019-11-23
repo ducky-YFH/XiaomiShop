@@ -14,6 +14,10 @@ import BackTop from './components/BackTop'
 import { Checkbox, CheckboxGroup } from 'vant';
 import { Search } from 'vant';
 import { Field } from 'vant';
+import axios from 'axios';
+import store from './stores'
+import { Toast } from 'vant';
+
 
 Vue.use(Field);
 Vue.use(Search);
@@ -30,10 +34,15 @@ Vue.use(AddressEdit);
 Vue.use(NavBar);
 Vue.use(Icon);
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
+Vue.use(Toast);
+
+Vue.prototype.$axios = axios;
+
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

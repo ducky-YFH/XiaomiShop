@@ -1,5 +1,6 @@
 <template>
   <div id="detail">
+    <!-- <h1>{{this.$route.params.id}}</h1> -->
     <!-- 轮播图 -->
     <div id="detail-carousel">
       <a class="back" @click="$router.back(-1)">返回</a>
@@ -37,7 +38,7 @@
       <div id="phone-sele">
         <div @click="phoneOpt.flag = true">
           <span>已选</span>
-          <span>小米CC9 Pro 6GB+128GB 魔法绿镜 x 1</span>
+          <span>{{phoneDetail.name +" "+ curPhone.ver.memory + " "+ curPhone.color + "x" + curPhone.count}}</span>
           <span>
             <van-icon name="arrow" />
           </span>
@@ -68,7 +69,7 @@
       <div id="phone-comment">
         <swiper :options="swiperOption">
           <swiper-slide v-for="(item,index) in commentList" :key="index">
-            <router-link tag="div" to="/comment/view">
+            <router-link tag="div" :to="`/comment/view/${item.cid}`">
               <div class="c-item">
                 <div class="c-mes">
                   <div class="c-left">
@@ -99,7 +100,7 @@
             </router-link>
           </swiper-slide>
         </swiper>
-        <router-link tag="a" to="comment/list">
+        <router-link tag="a" :to="`/comment/list/${phoneDetail.id}`">
           <div id="comment-more">
             <span>更多评论</span>
             <van-icon name="more-o" />
@@ -122,54 +123,60 @@
         </li>
       </ul>
     </Option>
-    <!-- +++++++++弹出组件-手机配置选择+++++++++ -->
+    <!-- ========================================弹出组件-手机配置选择======================================== -->
     <Option :option="phoneOpt" @closeBox="closeBox">
       <div class="phoneSlot">
         <!-- 图片、名称、价格 -->
         <div class="p-mes">
-          <img
-            class="p-img"
-            src="//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1572941094.42616676.jpg"
-            alt
-          />
+          <img class="p-img" :src="curPhone.img" />
           <div>
-            <p class="p-price">￥3099</p>
-            <p class="p-name">小米CC9 Pro 8GB+128GB 魔法绿镜</p>
+            <p class="p-price">￥{{ curPhone.ver.money }}</p>
+            <p class="p-name">{{ phoneDetail.name +" "+ curPhone.ver.memory + " "+ curPhone.color}}</p>
           </div>
         </div>
         <div class="p-wrap">
           <!-- 版本 -->
-          <div class="p-sele">
+          <div class="p-sele p-type">
             <p>版本</p>
-            <ul>
-              <li class="active">6GB+128GB</li>
-              <li>8GB+128GB</li>
-              <li>8GB+256GB</li>
+            <ul @click="selectType">
+              <li
+                :data-index="index"
+                :class="{active: index == 0 }"
+                v-for="(item,index) in curPhone.vers"
+                :key="index"
+              >{{ item.memory }}</li>
             </ul>
           </div>
           <!-- 颜色 -->
           <div class="p-sele">
             <p>颜色</p>
-            <ul>
-              <li class="active">魔法绿镜</li>
-              <li>冰雪极光</li>
-              <li>暗夜魅影</li>
+            <ul @click="selectColor">
+              <li
+                :class="{active: index == 0}"
+                v-for="(item,index) in types"
+                :key="index"
+                :data-index="index"
+              >{{item.color}}</li>
             </ul>
           </div>
           <!-- 购买数量 -->
           <div class="p-count">
             <span>购买数量</span>
-            <div class="counter">
-              <span class="minus">&minus;</span>
-              <span class="num">1</span>
-              <span class="add can">&plus;</span>
+            <div class="counter" @click="controlCount">
+              <span :class="[{minus: true}, {can: curPhone.count > 0}]">&minus;</span>
+              <span class="num">{{ curPhone.count }}</span>
+              <span :class="[{add: true}, {can: curPhone.count < curPhone.ver.max}]">&plus;</span>
             </div>
           </div>
           <!-- 加入购物车 -->
-          <button class="p-btn">加入购物车</button>
+          <button
+            @click="addToCart"
+            :class="[{btnCart: true}, {btnPass: curPhone.count == 0}]"
+          >加入购物车</button>
         </div>
       </div>
     </Option>
+    <!-- ===================================================================================================== -->
     <!-- ++++++++++++弹出组件-选择地址++++++++++++ -->
     <Option :option="addrOpt" @closeBox="closeBox">
       <van-address-list
@@ -188,7 +195,6 @@
         </li>
       </ul>
     </Option>
-    <!-- <h1>{{this.$route.params.id}}</h1> -->
   </div>
 </template>
 
@@ -199,81 +205,6 @@ export default {
   name: 'detail',
   data(){
     return {
-      phoneDetail: {
-        id: '1',
-        name: '小米CC9 Pro',
-        notice: '[ 新品火热开售中，分期享6期免息，低至467元起/期 ]',
-        sketch: '1亿像素超清主摄 / 后置全场景五摄像头 / 双闪光双柔光四闪光灯 / 3200万像素超清前置相机 / 10倍混合光学变焦，50倍数字变焦 / 5260mAh大电量 / 标配30W疾速快充 / 小米首款超薄屏下指纹 / 德国莱茵低蓝光认证 / 多功能NFC / 红外万能遥控 / 1216 超线性扬声器',
-        price: 2799,
-        deploy: [
-          {name:'CPU',cname:'骁龙730G',img:'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/f0c04e138bfed2b1ebb589de615236d1.png'},
-          {name:'五摄像头',cname:'10800万+2000万+1200万+500万+200万像素',img:'https://i8.mifile.cn/b2c-mimall-media/7692726e7a1dd34a3b1b4ede8aca020d.png'},
-          {name:'超大屏',cname:'6.47英寸',img:'https://i8.mifile.cn/b2c-mimall-media/86a3bd46cf4f7f19daa2c3250cf30604.png'},
-          {name:'屏幕分辨率',cname:'2340x1080',img:'https://i8.mifile.cn/b2c-mimall-media/a5ab24dcb527e49f970f13b11e000ab1.png'},
-          {name:'极速畅玩',cname:'6GB',img:'https://i8.mifile.cn/b2c-mimall-media/c8ec0829241324e401744da627482560.png'},
-          {name:'存储容量',cname:'128GB',img:'https://i8.mifile.cn/b2c-mimall-media/8941adac25333e785b9cc78ca11f4f27.png'},
-          {name:'超长待机',cname:'5260mAh',img:'https://i8.mifile.cn/b2c-mimall-media/0b4ea0fb21dde2f29df3c20de73539b9.png'},
-          {name:'运营商网络',cname:'4G全网通',img:'https://i8.mifile.cn/b2c-mimall-media/d1b67a407fb2a1ed42c2c0ce15af3318.png'},
-          {name:'网络模式',cname:'双卡双待',img:'https://i8.mifile.cn/b2c-mimall-media/bfd5ba9ae72c365dee42db14dfae4b0f.png'},
-        ],
-        mainDeploy:[
-          {type:'CPU',n:'高通骁龙'},
-          {type:'CPU主频',n:'最高2.2GHZ'},
-          {type:'后置摄像头',n:'10800万+2000万+1200万+500万+200万像素'},
-          {type:'前置摄像头',n:'3200万像素'},
-          {type:'屏幕',n:'双曲面'},
-          {type:'屏幕尺寸',n:'6.47英寸'},
-          {type:'屏幕分辨率',n:'2340x1080'},
-          {type:'运行内存',n:'6GB'},
-          {type:'存储容量',n:'128GB'},
-          {type:'NFC',n:'支持'},
-          {type:'红外遥控',n:'支持'},
-          {type:'指纹识别',n:'屏幕指纹'},
-          {type:'电池容量',n:'5260mAh'},
-          {type:'电池充电',n:'有线快充'},
-          {type:'网络类型',n:'4G全网通'},
-          {type:'网络模式',n:'双卡双待'},
-        ],
-        comment: [
-          {name: '小明', content: '非常不错的一款手机，拍照清晰',img:['https://i1.mifile.cn/a2/1573781813_7654729_s1128_1504wh.jpg','https://i1.mifile.cn/a2/1573781811_8004007_s1224_1632wh.jpg']},
-          {name: '小红', content: '这台手机很好看，非常喜欢',img:['https://i1.mifile.cn/a2/1573720837_7399607_s1500_2000wh.jpg','https://i1.mifile.cn/a2/1573720833_8357377_s2000_1500wh.jpg']}
-        ],
-        type:[
-          {color: '魔法绿镜',ver:[{memory:'6GB+128GB',number:100},{memory:'8GB+128GB',number: 50},{memory:'8GB+256GB',number:30}]},
-          {color: '冰雪极光',ver:[{memory:'6GB+128GB',number:100},{memory:'8GB+128GB',number: 50},{memory:'8GB+256GB',number:40}]},
-          {color: '暗夜魅影',ver:[{memory:'6GB+128GB',number:10},{memory:'8GB+128GB',number: 30},{memory:'8GB+256GB',number:10}]},
-          '8GB+128GB',
-          '8GB+256GB'
-        ],
-        img:[
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/ce07b93044e955f4d395b1af4f7f873f.jpg?f=webp&w=1080&h=2479&bg=20307',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/cb0eaeabc5030ac1c9282cf9b3c8effa.jpg?f=webp&w=1080&h=2195&bg=151515',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/384da100cbc0058265582b0851c4f2c5.jpg?f=webp&w=1080&h=2419&bg=10101',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/81ed16ae262d7a3f24bd4b43d018b957.jpg?f=webp&w=1080&h=2598&bg=10101',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/0adb1e65f11e744529cb07e19dd709fc.jpg?f=webp&w=1080&h=2058&bg=0',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/23cb2c757c219ea3f598384f4114db15.jpg?f=webp&w=1080&h=810&bg=4B71AF',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/42712c5fbb65eb59ea27fc89e2fd203b.jpg?f=webp&w=1080&h=1807&bg=141414',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5a7f755c8fe9d7ac70559095915c707c.jpg?f=webp&w=1080&h=1587&bg=10101',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/b8d76c1febbe8365eee2dc51f4637203.jpg?f=webp&w=1080&h=2096&bg=10101',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/7432d6d76f74a92764951ba3e81473ab.jpg?f=webp&w=1080&h=1942&bg=E5F2F8',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/9ec7104e82ddebb8ca5d92f82b736bc7.jpg?f=webp&w=1080&h=1036&bg=F7F7F7',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/fc88fd153c1da1138fd621e00137d3e2.png?w=1080&h=427',
-        ],
-        carousel:[
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/f72a2a4b703834d55a1850c50172e6c9.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/30bc4cdb195b2b85e997967399659b95.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/7aecd5ccab1ee2f565588ca6211ac06b.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/3abade1a775f6c86ba5963bba538e3f3.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5742bc15fcfe5e99d660406187bc8987.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/2ab3819c8b315abb974230b68df6a40c.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/86af9949b94e1bd54e9b334bf621faa7.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/ac0c7f41be1c8f48d854b6f9c66c3f5e.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/debe9bcf9af16e25ac05378e141493fb.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/68f4a723a1c26acc064ac3a028865ff7.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/15af19386c9c52cdf58116a67b697d47.jpg',
-          '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/1bdf061e5817020fccd5dd00dc7f8ac4.jpg'
-        ]
-      },
       paraOpt:{
         flag: false,
         title: '关键参数'
@@ -282,6 +213,7 @@ export default {
         flag: false,
         title: '选择配置'
       },
+      // 地址
       addrOpt:{
         flag: false,
         title: '选择地址',
@@ -301,72 +233,26 @@ export default {
           }
         ]
       },
+      phoneDetail: {},
+      // 服务说明
       serveOpt:{
         flag: false,
         title: '服务说明',
-        serve:[
-          '小米自营',
-          '由小米发货',
-          '7天无理由退货',
-          '运费说明：由小米(不含小米有品)发货的商品,单笔满150元免运费;<br>'+
-          '由小米有品发货的商品,免运费;<br>'+
-          '由第三方商家发货的商品,免运费;<br>'+
-          '特殊商品需要单独收取运费,具体以实际结算金额为准;优惠券等不能抵扣运费金额;如需无理由退货,用户将承担该商品的退货物流费用;<br>',
-          '7天价格保护'
-        ]
+        serve:[]
       },
-      // 评论swiper滑块API
+      // 评论swiper滑块API，用来评论区
       swiperOption: {
         slidesPerView : 'auto'
       },
       // 评论内容
-      commentList:[
-        {
-          user: '大黑帅', 
-          avatar: 'https://s1.mi-img.com/mfsv2/avatar/fdsc3/p01nYY16yjI2/70BOxylxKgCdcK.jpg',
-          time: '2019-11-17',
-          like: 11, 
-          con:'手机外观挺漂亮的，颜值高！电池大！间直好看的无法形容，very good',
-          repy:{ name: '官方',con: '必须给你点赞，我还练过葵花点穴手，保证你舒坦' },
-          img:[
-            '//i1.mifile.cn/a2/1573711026_4629170_s1500_2000wh!540x5400.jpg',
-            '//i1.mifile.cn/a2/1573711025_8415951_s1500_2000wh!540x5400.jpg'
-          ]
-        },
-        {
-          user: '小黑帅', 
-          avatar: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-data-mishop/9bd716bcdd5d6e4968d3adc3c5b6353b.jpg',
-          time: '2019-11-18', 
-          like: 100, 
-          con:'拍照效果真心不错👍！值得拥有，性价比好！',
-          repy:{ name: '官方',con: '鹅鹅鹅，曲项向天歌，白毛浮绿水，米米爱你哟~ღ( ´･ᴗ･` )感谢您...' },
-          img:[
-            '//i1.mifile.cn/a2/1573739504_1002777_s414_276wh!540x5400.jpg',
-            '//i1.mifile.cn/a2/1573739503_7035046_s414_276wh!540x5400.jpg'
-          ]
-        },
-        {
-          user: '小工', 
-          avatar: 'https://s1.mi-img.com/mfsv2/avatar/fdsc3/p01T5CyF1EV6/doYKhjWZt2QPQH.jpg',
-          time: '2019-11-17', 
-          like: 1112, 
-          con:'还是很惊艳的，嘿嘿',
-          repy:{ name: '官方',con: '米家CC初长成，隐于深闺人不知，天生丽质难自弃，一朝选在米粉侧~~感谢...' },
-          img:[
-            '//i1.mifile.cn/a2/1573700784_4893316_s1512_2016wh!540x5400.jpg',
-            '//i1.mifile.cn/a2/1573700782_6353342_s2016_1512wh!540x5400.jpg'
-          ]
-        },
-      ],
+      commentList:[],
       // 手机图片介绍数据
-      introduceImg:[
-        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/2913a25096cdb5ef68d5bb861756e563.jpeg?f=webp&w=1242&h=196&bg=0',
-        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/ce07b93044e955f4d395b1af4f7f873f.jpg?f=webp&w=1080&h=2479&bg=20307',
-        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/cb0eaeabc5030ac1c9282cf9b3c8effa.jpg?f=webp&w=1080&h=2195&bg=151515',
-        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/384da100cbc0058265582b0851c4f2c5.jpg?f=webp&w=1080&h=2419&bg=10101',
-        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/9ec7104e82ddebb8ca5d92f82b736bc7.jpg?f=webp&w=1080&h=1036&bg=F7F7F7',
-        '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/fc88fd153c1da1138fd621e00137d3e2.png?w=1080&h=427'
-      ]
+      introduceImg:[],
+      // 手机参数选择
+      types:[],
+      // 当前选择的手机
+      curPhone:{ id: '', name: '', img: '', color:'', count: Number, ver: {}, vers: [],
+      }
     }
   },
   filters:{
@@ -381,13 +267,115 @@ export default {
       this.addrOpt.flag = flag
       this.serveOpt.flag = flag
     },
+    // 跳到添加地址组件
     onAdd(){
       this.$router.push('/address/editaddr')
     },
+    // 编辑地址
     onEdit(item, index) {
       window.console.log('编辑地址',item,index)
-      
+    },
+    // 获取后台数据
+    getDetail(){
+      this.$axios.get("/api/detail",{ params: {id: this.$route.params.id} }).then(res => {
+        this.phoneDetail = res.data
+        this.serveOpt.serve = this.phoneDetail.serve
+        this.commentList = this.phoneDetail.commentList
+        this.introduceImg = this.phoneDetail.introduceImg
+        this.curPhone.name = this.phoneDetail.name
+        this.types = this.phoneDetail.types
+        this.selectFirst(this.types[0])
+      }).catch(error =>{
+        window.console.log('获取不到数据',error)
+      })
+    },
+    // 选取手机颜色
+    selectColor(event){
+      if(event.target.localName == 'li'){
+        let index = this.showActive(event);
+        this.curPhone.img = this.types[index].img
+        this.curPhone.color = this.types[index].color
+        this.curPhone.vers = this.types[index].vers
+        // 找到ul判断是否有ver
+        document.querySelector('.p-type > ul').children.forEach((item,index) => {
+          if(item.className == 'active'){
+            this.curPhone.ver = this.curPhone.vers[index]
+          }
+        })
+        this.judgeNum()
+        // window.console.log(this.curPhone)
+      }
+    },
+    // 默认自动选择手机配置一
+    selectFirst(firstItem){
+      this.curPhone.id = this.$route.params.id
+      this.curPhone.img = firstItem.img
+      this.curPhone.color = firstItem.color
+      this.curPhone.vers = firstItem.vers
+      this.curPhone.ver = firstItem.vers[0]
+      this.judgeNum()
+    },
+    // 选择手机配置
+    selectType(event){
+      if(event.target.localName == 'li'){
+        let index = this.showActive(event);
+        this.curPhone.ver = this.curPhone.vers[index]
+        this.judgeNum()
+      }
+    },
+    showActive(e){
+      e.target.parentElement.children.forEach(item => {
+        item.className = ""  
+      })
+      e.target.className = "active"
+      return e.target.dataset.index
+    },
+    // 判断手机可以购买的数量是否大于0
+    judgeNum(){
+      if(this.curPhone.ver.max > 0){
+        this.curPhone.count = 1
+      }else{
+        this.curPhone.count = 0
+      }
+    },
+    // 控制购买数量
+    controlCount(e){
+      if(e.target.classList.contains('minus') && this.curPhone.count > 0){
+        this.curPhone.count -= 1;
+      }
+      if(e.target.classList.contains('add') && this.curPhone.count < this.curPhone.ver.max){
+        this.curPhone.count += 1;
+      }
+    },
+    // 添加到购物车
+    addToCart(){
+      if(this.curPhone.count > 0){
+        let newCurPhone = this.deepCopy({}, this.curPhone);
+        this.$store.dispatch('addCart',newCurPhone)
+        this.$toast.success('添加成功！');
+        this.phoneOpt.flag = false
+        this.$router.push('/cart')
+      }
+    },
+    // 深拷贝
+    deepCopy(newObj, oldObj) {
+      for (var key in oldObj) {
+        var item = oldObj[key]
+        if (item instanceof Array) {
+          newObj[key] = [];
+          this.deepCopy(newObj[key], item);
+        }else if (item instanceof Object) {
+          newObj[key] = {};
+          this.deepCopy(newObj[key], item);
+        }else {
+          newObj[key] = item;
+        }
+      }
+      return newObj;
     }
+  },
+  mounted(){
+    this.getDetail();
   },
   components:{
     Option,
@@ -672,6 +660,10 @@ export default {
             color: #ff7517;
             border: 1px solid #ff7517;
           }
+          .passive {
+            color: #d5d5d5;
+            border: 1px solid #d5d5d5;
+          }
         }
       }
       .p-count {
@@ -699,7 +691,7 @@ export default {
           }
         }
       }
-      .p-btn {
+      .btnCart {
         width: 100%;
         margin-top: 1rem;
         border: none;
@@ -707,6 +699,9 @@ export default {
         background: #ff6700;
         color: #fff;
         border-radius: 30px;
+        &.btnPass {
+          background: #9c9898;
+        }
       }
     }
   }
