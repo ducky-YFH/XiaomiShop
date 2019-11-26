@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <keep-alive exclude="cart,detail">
-      <router-view></router-view>
-    </keep-alive>
+    <transition name="slide">
+      <keep-alive exclude="cart">
+        <router-view></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 

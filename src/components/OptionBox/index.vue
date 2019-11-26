@@ -1,6 +1,6 @@
 <template>
   <!-- 手机参数 -->
-  <div>
+  <div class="option">
     <div id="mask" v-show="option.flag"></div>
     <transition>
       <div id="box" v-show="option.flag">

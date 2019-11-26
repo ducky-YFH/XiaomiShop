@@ -35,48 +35,20 @@ export default {
   name: 'Category',
   data(){
     return {
-      phoneList: [
-        {
-          type: '小米手机',
-          list: [
-            { id:1, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/15ee8b3b156837eecc9ae9660e1b869b.png?thumb=1&w=120&h=120'},
-            { id:2, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/15ee8b3b156837eecc9ae9660e1b869b.png?thumb=1&w=120&h=120'},
-            { id:3, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/15ee8b3b156837eecc9ae9660e1b869b.png?thumb=1&w=120&h=120'},
-            { id:4, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/15ee8b3b156837eecc9ae9660e1b869b.png?thumb=1&w=120&h=120'},
-            { id:5, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/15ee8b3b156837eecc9ae9660e1b869b.png?thumb=1&w=120&h=120'},
-          ]
-        },
-        {
-          type: '红米手机',
-          list: [
-            { id:6, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/99022ce28f145ff5a521c848596295ec.gif'},
-            { id:7, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/99022ce28f145ff5a521c848596295ec.gif'},
-            { id:8, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/99022ce28f145ff5a521c848596295ec.gif'},
-            { id:9, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/99022ce28f145ff5a521c848596295ec.gif'},
-            { id:10, name: '小米9CC Pro',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/99022ce28f145ff5a521c848596295ec.gif'},
-          ]
-        },
-        {
-          type: '黑鲨手机',
-          list: [
-            { id:11, name: '小米9CC Pro', to:'',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e6c8a112abab1c03285aa915d731f6c3.png?thumb=1&w=120&h=120'},
-            { id:12, name: '小米9CC Pro', to:'',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e6c8a112abab1c03285aa915d731f6c3.png?thumb=1&w=120&h=120'},
-            { id:13, name: '小米9CC Pro', to:'',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e6c8a112abab1c03285aa915d731f6c3.png?thumb=1&w=120&h=120'},
-            { id:14, name: '小米9CC Pro', to:'',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e6c8a112abab1c03285aa915d731f6c3.png?thumb=1&w=120&h=120'},
-            { id:15, name: '小米9CC Pro', to:'',src:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e6c8a112abab1c03285aa915d731f6c3.png?thumb=1&w=120&h=120'},
-          ]
-        }
-      ],
+      phoneList: [],
       phoneType:[],
       phoneData:{}
     }
   },
   methods:{
     getPhoneData(){
-      this.phoneList.forEach((item)=>{
-        this.phoneType.push(item.type)
+      this.$axios.get('/api/category').then(res => {
+        this.phoneList = res.data
+        this.phoneList.forEach((item)=>{
+          this.phoneType.push(item.type)
+        })
+        this.phoneData = this.phoneList[0];
       })
-      this.phoneData = this.phoneList[0];
     },
     switchPhone(e){
       if(e.target.nodeName.toLowerCase() === 'a'){
@@ -96,7 +68,6 @@ export default {
   },
   components: {
     TabBar,
-    // NavBar
   }
 }
 </script>

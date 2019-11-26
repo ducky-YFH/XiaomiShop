@@ -1,5 +1,5 @@
 let express = require('express')
-let indexRouter = require('./routes/index')
+let indexRouter = require('./routes')
 let app = express();
 
 app.use('/api', indexRouter);

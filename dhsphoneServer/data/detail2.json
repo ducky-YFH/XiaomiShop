@@ -1,0 +1,248 @@
+{
+  "id": 2,
+  "name": "Redmi Note 8",
+  "notice": "「6GB+64GB直降100，到手价1099元，新增星云紫新配色」",
+  "sketch": "4800万全场景四摄 / 前置1300万美颜相机 / 骁龙665处理器 / 4000mAh超长续航 / 标配18W快充 / 超线性扬声器 / 90%高屏占比 / 康宁大猩猩保护玻璃 / 6.3英寸水滴全面屏",
+  "price": 1099,
+  "deploy": [
+    {
+      "name": "CPU",
+      "cname": "骁龙665八核",
+      "img": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/f0c04e138bfed2b1ebb589de615236d1.png"
+    },
+    {
+      "name": "四摄像头",
+      "cname": "4800万+800万+200万+200万像素",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/7692726e7a1dd34a3b1b4ede8aca020d.png"
+    },
+    {
+      "name": "超大屏",
+      "cname": "6.3英寸",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/86a3bd46cf4f7f19daa2c3250cf30604.png"
+    },
+    {
+      "name": "屏幕分辨率",
+      "cname": "2340x1080",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/a5ab24dcb527e49f970f13b11e000ab1.png"
+    },
+    {
+      "name": "极速畅玩",
+      "cname": "6GB",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/c8ec0829241324e401744da627482560.png"
+    },
+    {
+      "name": "存储容量",
+      "cname": "64GB",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/8941adac25333e785b9cc78ca11f4f27.png"
+    },
+    {
+      "name": "超长待机",
+      "cname": "4000mAh",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/0b4ea0fb21dde2f29df3c20de73539b9.png"
+    },
+    {
+      "name": "运营商网络",
+      "cname": "4G全网通",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/d1b67a407fb2a1ed42c2c0ce15af3318.png"
+    },
+    {
+      "name": "网络模式",
+      "cname": "双卡双待",
+      "img": "https://i8.mifile.cn/b2c-mimall-media/bfd5ba9ae72c365dee42db14dfae4b0f.png"
+    }
+  ],
+  "mainDeploy": [
+    {
+      "type": "CPU",
+      "n": "骁龙665八核"
+    },
+    {
+      "type": "CPU主频",
+      "n": "最高2.0GHZ"
+    },
+    {
+      "type": "后置摄像头",
+      "n": "4800万+800万+200万+200万像素"
+    },
+    {
+      "type": "前置摄像头",
+      "n": "1300万像素"
+    },
+    {
+      "type": "屏幕",
+      "n": "水滴全面屏"
+    },
+    {
+      "type": "屏幕尺寸",
+      "n": "6.3英寸"
+    },
+    {
+      "type": "屏幕分辨率",
+      "n": "2340x1080"
+    },
+    {
+      "type": "运行内存",
+      "n": "6GB"
+    },
+    {
+      "type": "存储容量",
+      "n": "64GB"
+    },
+    {
+      "type": "指纹识别",
+      "n": "后置指纹"
+    },
+    {
+      "type": "电池容量",
+      "n": "4000mAh"
+    },
+    {
+      "type": "电池充电",
+      "n": "有线快充"
+    },
+    {
+      "type": "网络类型",
+      "n": "4G全网通"
+    },
+    {
+      "type": "网络模式",
+      "n": "双卡双待"
+    }
+  ],
+  "commentList": [
+    {
+      "cid": 111,
+      "user": "高飞仰冥鸿",
+      "avatar": "https://s1.mi-img.com/mfsv2/avatar/fdsc3/p01YZktmc1S1/6kM9Gvbnut5swb.jpg",
+      "time": "2019-11-17",
+      "like": 11,
+      "con": "一直在用小米的，这也是第五台，不错，挺好的",
+      "repy": {
+        "name": "官方",
+        "con": "必须给你点赞，我还练过葵花点穴手，保证你舒坦"
+      },
+      "img": [
+        "//i1.mifile.cn/a2/1571641042_6970594_s1200_1600wh!540x5400.jpg",
+        "//i1.mifile.cn/a2/1571641035_1605830_s1500_2000wh!540x5400.jpg",
+        "//i1.mifile.cn/a2/1571641021_8353454_s1500_2000wh!540x5400.jpg"
+      ]
+    },
+    {
+      "cid": 222,
+      "user": "溪源陶莎",
+      "avatar": "https://s1.mi-img.com/mfsv2/avatar/fdsc3/p01iIOHaGh5I/8e2xquF7KJ6ypd.jpg",
+      "time": "2019-11-18",
+      "like": 100,
+      "con": "外观高大上，拍照可以第三部小米品牌手机，希望小米不忘初心，我会永远支持",
+      "repy": {
+        "name": "官方",
+        "con": "米米爱你哟~ღ( ´･ᴗ･` )感谢您..."
+      },
+      "img": [
+        "//i1.mifile.cn/a2/1568868607_9278224_s1500_2000wh!540x5400.jpg",
+        "//i1.mifile.cn/a2/1568868603_5411028_s1500_2000wh!540x5400.jpg"
+      ]
+    },
+    {
+      "cid": 333,
+      "user": "暗黑。",
+      "avatar": "https://s1.mi-img.com/mfsv2/avatar/fdsc3/p01T5CyF1EV6/doYKhjWZt2QPQH.jpg",
+      "time": "2019-11-17",
+      "like": 1112,
+      "con": "第四部小米手机了，性价比高，以后还会继续支持小米。",
+      "repy": {
+        "name": "官方",
+        "con": "米家CC初长成，隐于深闺人不知，天生丽质难自弃，一朝选在米粉侧~~感谢..."
+      },
+      "img": [
+        "//i1.mifile.cn/a2/1568863149_8219722_s1920_1074wh!540x5400.jpg",
+        "//i1.mifile.cn/a2/1568863148_9976420_s2016_1508wh!540x5400.jpg",
+        "//i1.mifile.cn/a2/1568863146_1909783_s2016_1508wh!540x5400.jpg"
+      ]
+    }
+  ],
+  "types": [
+    {
+      "color": "皓月白",
+      "img": "//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1567422175.57093562.jpg",
+      "vers": [
+        {
+          "memory": "6GB+64GB",
+          "money" : 1099,
+          "max": 10
+        }
+      ]
+    },
+    {
+      "color": "曜石黑",
+      "img": "//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1567422141.04018158.jpg",
+      "vers": [
+        {
+          "memory": "6GB+64GB",
+          "money" : 1099,
+          "max": 14
+        }
+      ]
+    },
+    {
+      "color": "星云紫",
+      "img":"//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1573823282.77886401.jpg",
+      "vers": [
+        {
+          "memory": "6GB+64GB",
+          "money" : 1099,
+          "max": 5
+        }
+      ]
+    },
+    {
+      "color": "梦幻蓝",
+      "img":"//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1567422055.88767967.jpg",
+      "vers": [
+        {
+          "memory": "6GB+64GB",
+          "money" : 1099,
+          "max": 6
+        }
+      ]
+    }
+  ],
+  "introduceImg": [
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/c6957583e0c7ae8e284579984068daf3.jpg?f=webp&w=1080&h=1753&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/acc23d295406a8cc59f09d34e9f02ce3.jpg?f=webp&w=1080&h=640&bg=F9D6FF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/d775752caeeededfdebe56ac632c60a0.jpg?f=webp&w=1080&h=501&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/57455489b5e27e1bc7692c4ac1fd7da1.jpg?f=webp&w=1080&h=498&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/57455489b5e27e1bc7692c4ac1fd7da1.jpg?f=webp&w=1080&h=498&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/4fd261af279833d58266ae22c345854c.jpg?f=webp&w=1080&h=1220&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/65301f1f51aac4a95a296646f4528603.jpg?f=webp&w=1080&h=640&bg=130D27",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/53da572f86319de783aa55b5abe06b95.jpg?f=webp&w=1080&h=676&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/8c35c836fe0ffce14b87a3416a809790.jpg?f=webp&w=920&h=1100&bg=FEFDFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/050f4d5b268e732473e88f17bfa6dfb8.jpg?f=webp&w=1080&h=675&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/b6a65e3af4bad6c061e38bc7f67b2aa0.jpg?f=webp&w=920&h=1100&bg=FCFAFD",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/dc66c011dcae0e3cd13cc25ea8abfd4d.jpg?f=webp&w=1080&h=640&bg=410F66",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/79b6d4bab1696360b19b6c230616b66d.jpg?f=webp&w=1080&h=1155&bg=FEFEFE",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/8247a51dc50825e40c3d3031f5703d9e.jpg?f=webp&w=1080&h=974&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/ec502a644c55d8ef341079ed89da9e41.jpg?f=webp&w=1080&h=971&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/2d05a553f369e182822c1b3046c94a61.jpg?f=webp&w=1080&h=675&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/f5fe12c3cca360e33af2000fb6dd2ef2.jpg?f=webp&w=750&h=443&bg=FFFFFF",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/1604b294506f6c05940c1f95adbb7f8b.jpg?f=webp&w=1080&h=1008&bg=FFFFFD",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/23cb9e078b1b671590f0df7c2ec70768.jpg?f=webp&w=1080&h=1058&bg=FFFFFF"
+  ],
+  "carousel": [
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/7734e0de99293d83ec5b923bb6b7aa3d.jpg",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/544606eafa79b7870ee48329571fbef2.jpg",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/65e3e2dcce852b09bd0e35d2425b2e9c.jpg",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e2d10fb82dcd525351085444dd21effe.jpg",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/538f19801c5a501e0e307d98677d752d.jpg",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/b17192d299e875fc2402badb7e4acf17.jpg",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/4019643d06e2bfe049ba2be1d9b5cf83.jpg",
+    "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/a82e1f926c8a4effe3e3e9b0cfadb2ec.jpg"
+  ],
+  "serve": [
+    "小米自营",
+    "由小米发货",
+    "7天无理由退货",
+    "运费说明：由小米(不含小米有品)发货的商品,单笔满150元免运费;<br>由小米有品发货的商品,免运费;<br>由第三方商家发货的商品,免运费;<br>特殊商品需要单独收取运费,具体以实际结算金额为准;优惠券等不能抵扣运费金额;如需无理由退货,用户将承担该商品的退货物流费用;<br>",
+    "7天价格保护"
+  ]
+}

@@ -2,31 +2,39 @@
   <div id="shoppingCart">
     <NavBar title="购物车"></NavBar>
     <TabBar></TabBar>
-    <div v-for="(item,index) in Cart" :key="index" class="car-item first-item">
-      <van-checkbox v-model="item.checked" checked-color="#ff5722"></van-checkbox>
-      <div class="car-img">
-        <img :src="item.img" alt />
-      </div>
-      <div class="car-main">
-        <p>{{item.name +" "+ item.ver.memory +" "+ item.color + " " }}</p>
-        <p>售价：{{ item.ver.money }}元</p>
-        <div class="counter" @click="handleCounter($event,index)">
-          <span :class="[{minus:true}, {can: item.count > 1}]">&minus;</span>
-          <span class="num">{{item.count}}</span>
-          <span :class="[{add:true},{can: item.count < item.ver.max}]">&plus;</span>
+    <div id="cart-null" v-show="Cart.length == 0">购物车空空如也</div>
+    <div v-show="Cart.length > 0">
+      <div class="supervisor" @click="supervisorShow">管理</div>
+      <div v-for="(item,index) in Cart" :key="index" class="car-item first-item">
+        <van-checkbox v-model="item.checked" checked-color="#ff5722" @click="toCheck(index)"></van-checkbox>
+        <div class="car-img">
+          <img :src="item.img" alt />
+        </div>
+        <div class="car-main">
+          <p>{{item.name +" "+ item.ver.memory +" "+ item.color + " " }}</p>
+          <p>售价：{{ item.ver.money }}元</p>
+          <div class="counter" @click="handleCounter($event,index)">
+            <span :class="[{minus:true}, {can: item.count > 1}]">&minus;</span>
+            <span class="num">{{item.count}}</span>
+            <span :class="[{add:true},{can: item.count < item.ver.max}]">&plus;</span>
+          </div>
+        </div>
+        <div class="car-rubbish" @click="delOne(index)">
+          <van-icon name="delete" />
         </div>
       </div>
-      <div class="car-rubbish">
-        <van-icon name="delete" />
+      <div id="car-supervisor" v-show="supervisorFlag">
+        <div class="all-check" @click="checkAll">全选</div>
+        <div class="delete-check" @click="delCheck">删除选中</div>
       </div>
-    </div>
-    <div id="car-count">
-      <div class="sum">共{{ goodsCount }}件</div>
-      <div class="money">
-        <span>{{ money }}</span>
-        <span>元</span>
+      <div id="car-count" v-show="!supervisorFlag">
+        <div class="sum">共{{ goodsCount }}件</div>
+        <div class="money">
+          <span>{{ money }}</span>
+          <span>元</span>
+        </div>
+        <div class="accounts">结算</div>
       </div>
-      <div class="accounts">去结算</div>
     </div>
   </div>
 </template>
@@ -38,7 +46,8 @@ export default {
   data(){
     return {
       money: 0,
-      goodsCount: 0
+      goodsCount: 0,
+      supervisorFlag: false
     }
   },
   computed:{
@@ -60,22 +69,77 @@ export default {
       }
     },
     countMoney(minus = false, add = false,  index){
+      let itemCheck = this.Cart[index].checked
+      let itemMoney = this.Cart[index].ver.money
+      let itemCount = this.Cart[index].count
       if(minus){
-        this.money -= this.Cart[index].ver.money
-        this.goodsCount -= 1
+        if(itemCheck){
+          this.money -= itemMoney
+          this.goodsCount -= 1
+        }
       }else if(add){
-        this.money += this.Cart[index].ver.money
-        this.goodsCount += 1
+        if(itemCheck){
+          this.money += itemMoney
+          this.goodsCount += 1
+        }
       }else{
-        this.Cart.forEach(item => {
-          this.money += item.count * item.ver.money
-          this.goodsCount += item.count
-        })
+        if(itemCheck){
+          this.money += itemMoney * itemCount 
+          this.goodsCount += itemCount
+        }else{
+          this.money -= itemMoney * itemCount 
+          this.goodsCount -= itemCount          
+        }
       }
+    },
+    delOne(index){
+      if(this.Cart[index].checked){
+        this.money -= this.Cart[index].ver.money * this.Cart[index].count 
+        this.goodsCount -= this.Cart[index].count
+      }
+      this.$store.dispatch('delOne',index)
+    },
+    toCheck(index){
+      this.$store.dispatch('toCheck', index)
+      // 计算总额
+      this.countMoney(false, false, index)
+    },
+    // 每次进入购物车都会重新计算一遍总额
+    initMoney(){
+      // 初始化金钱和数量
+      this.money = 0
+      this.goodsCount = 0
+      // 重新统计金钱和数量
+      if(this.Cart.length > 0){
+        this.Cart.forEach( item =>{
+          if(item.checked){
+            this.money += item.count * item.ver.money
+            this.goodsCount += item.count
+          }
+        })
+      }else{
+        this.money = 0
+        this.goodsCount = 0
+      }
+    },
+    // 全选
+    checkAll(){
+      this.$store.dispatch('checkAll')
+      this.initMoney()
+    },
+    // 删除选中
+    delCheck(){
+      this.$store.dispatch('delCheck')
+      this.initMoney()
+    },
+    // 显示隐藏删除条
+    supervisorShow(){
+      this.supervisorFlag = !this.supervisorFlag
     }
   },
   mounted(){
-    this.countMoney()
+    // this.countMoney()
+    this.initMoney()
   },
   components:{
     TabBar
@@ -85,11 +149,26 @@ export default {
 
 <style lang="scss" scoped>
 #shoppingCart {
-  background: #f5f5f5;
+  background: #ffffff;
   width: 100%;
   height: 100%;
+  padding-bottom: 1.4rem;
+  #cart-null{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 0.6rem;
+    background: #fff;
+  }
+  .supervisor {
+    font-size: 0.4rem;
+    background: #ffffff;
+    text-align: right;
+    padding: 0.3rem;
+  }
   .first-item {
-    margin-top: 0 !important;
+    margin-top: -0.5rem !important;
   }
   .car-item {
     margin-top: 0.4rem;
@@ -143,6 +222,28 @@ export default {
       .van-icon::before {
         text-align: left;
       }
+    }
+  }
+  #car-supervisor {
+    position: fixed;
+    bottom: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.5rem;
+    background: #f4f4f4;
+    line-height: 1.5rem;
+    border-top: 1px solid #f4f4f4;
+    div {
+      flex: 1;
+      text-align: center;
+      color: #ffffff;
+    }
+    .all-check {
+      background: #ff6700;
+    }
+    .delete-check {
+      background: red;
     }
   }
   #car-count {

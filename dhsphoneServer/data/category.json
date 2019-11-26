@@ -1,0 +1,117 @@
+[
+  {
+    "type": "小米手机",
+    "list": [
+      {
+        "id": 1,
+        "name": "小米CC9 Pro",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/15ee8b3b156837eecc9ae9660e1b869b.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 55,
+        "name": "小米9 Pro 5G",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5b0d18a3033b43c0645b78dfc9d759a9.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 321,
+        "name": "小米9",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/d78ed6a88a978b313ba7cf5438d60ff8.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 412,
+        "name": "小米CC9",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/8def00234637f733dfb59d2be3bb1abd.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 429,
+        "name": "小米CC9e",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/f6c2fbc0a96d51f5e713fd3daae8f73b.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 123,
+        "name": "小米CC9 美图版",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/ff6dd80e3fc674ec70d7361f5409c5dc.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 32,
+        "name": "小米MIX Alpha",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/266ad6dd5146deaf3ae3602a89e7a217.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 31,
+        "name": "小米Mix3",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/80da1d43af3f1c494f7165bf612adcad.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 421,
+        "name": "",
+        "src": ""
+      },
+      {
+        "id": 431,
+        "name": "小米Max3",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/872fdee87f411a310940d27a963654d7.png?thumb=1&w=120&h=120"
+      }
+    ]
+  },
+  {
+    "type": "红米手机",
+    "list": [
+      {
+        "id": 2,
+        "name": "Redmi 8",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/a78e73027b202757a933083ddd6ffbe0.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 399,
+        "name": "Redmi 8A",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/39ad29e9dce40a7afa494fe9e0cf9b0d.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 324,
+        "name": "Redmi 7A",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/8d0ceb8b80da9e0ee31700451f17e984.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 123,
+        "name": "Redmi 7",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5923b23fa1246a08b7784d94ce0456dc.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 391,
+        "name": "Redmi Note 8 Pro",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/99022ce28f145ff5a521c848596295ec.gif"
+      },
+      {
+        "id": 121,
+        "name": "Redmi Note 8",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/271b3bd052e735143ee7298f2d6d43fa.gif"
+      },
+      {
+        "id": 114,
+        "name": "Redmi Note 7 Pro",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/a5f182ef1ccf4d495ae62f07670baa45.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 116,
+        "name": "Redmi Note 7",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/3ff3bb2059f006b1c5699310c9743e62.png?thumb=1&w=120&h=120"
+      },
+      {
+        "id": 113,
+        "name": "K20 Pro 尊享版",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/70b1410a2b0002c3d41d8e70abb40cdd.gif"
+      }
+    ]
+  },
+  {
+    "type": "游戏手机",
+    "list": [
+      {
+        "id": 151,
+        "name": "黑鲨游戏手机2 Pro",
+        "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e6c8a112abab1c03285aa915d731f6c3.png?thumb=1&w=120&h=120"
+      }
+    ]
+  }
+]

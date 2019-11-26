@@ -2,18 +2,18 @@
   "phoneList": [
     {
       "id": "1",
-      "name": "Redmi Note8 Pro",
-      "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/918eafcf051967f9d212a649fad7de28.jpg?thumb=1&w=344&h=280",
-      "sketch": "6400万全场景四摄",
-      "priceNow": "￥1299起",
-      "priceBe": "￥1399"
+      "name": "小米CC9 Pro",
+      "src": "//i8.mifile.cn/v1/a1/7d583942-b8f9-951a-1f27-c836b86c1473.webp",
+      "sketch": "3200万自拍，4800万三摄",
+      "priceNow": "1699",
+      "priceBe": "1999"
     },
     {
       "id": "2",
       "name": "Redmi Note 8",
       "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/8025107813883a20d3f2d956ad80ea38.jpg?thumb=1&w=344&h=280",
       "sketch": "千元4800万四摄",
-      "priceNow": "￥1299起",
+      "priceNow": "1299起",
       "priceBe": "",
       "hot": "true",
       "hotSrc": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/e32eea5c3c27062019f9ac6434b351df.jpg?thumb=1&w=720&h=440"
@@ -23,7 +23,7 @@
       "name": "Redmi Note 7  Pro",
       "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/905c13a84d8b70c9b9f4e3dee10a9515.jpg?thumb=1&w=344&h=280",
       "sketch": "索尼4800万超清拍照",
-      "priceNow": "￥1299起",
+      "priceNow": "1299起",
       "priceBe": ""
     },
     {
@@ -31,7 +31,7 @@
       "name": "Redmi K20",
       "src": "//i8.mifile.cn/v1/a1/86143982-11ca-5249-e90c-eecfdb9b98a0.webp",
       "sketch": "弹出全面屏，4800万三摄",
-      "priceNow": "￥1299起",
+      "priceNow": "1299起",
       "priceBe": ""
     },
     {
@@ -39,13 +39,13 @@
       "name": "小米9 Pro 5G",
       "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/4c45bb8ab2c35e31910612acd2cb7f91.jpg?thumb=1&w=344&h=280",
       "sketch": "5G双卡全网通，骁龙855Plus",
-      "priceNow": "￥3699起",
+      "priceNow": "3699起",
       "priceBe": ""
     }
   ],
   "carousel": [
     {
-      "id": "5",
+      "id": "1",
       "name": "xiaomiCC9Pro",
       "src": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/d051875340405ba2f33d89eb8c1ef400.jpg?thumb=1&w=720&h=360"
     },

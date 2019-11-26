@@ -9,7 +9,8 @@
         <i class="icon iconfont icon-icon-category"></i>
         <p>分类</p>
       </router-link>
-      <router-link to="/cart" tag="a" class="nav-item">
+      <router-link to="/cart" tag="a" class="nav-item cart">
+        <span class="count">{{ count }}</span>
         <i class="icon iconfont icon-ShoppingCart_"></i>
         <p>购物车</p>
       </router-link>
@@ -24,7 +25,17 @@
 
 <script>
 export default {
-
+  name: "TabBar",
+  computed:{
+    count(){
+      let cart = this.$store.getters.cart
+      let count = 0;
+      cart.forEach(item => {
+        count += item.count
+      })
+      return count
+    }
+  },
 }
 </script>
 
@@ -41,6 +52,22 @@ export default {
     justify-content: space-around;
     padding-bottom: 0.15rem;
     .nav-item {
+      &.cart{
+        position: relative;
+      }
+      .count {
+        position: absolute;
+        min-width: 0.5rem;
+        font-size: 0.3rem;
+        color: #fff;
+        background: #ed4d41;
+        display: inline-block;
+        z-index: 2;
+        padding: 0.04rem;
+        border-radius: 20px;
+        top: 0.1rem;
+        left: 1.3rem;
+      }
       &.link-active {
         color: #f56d02;
       }

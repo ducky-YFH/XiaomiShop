@@ -22,6 +22,9 @@ let router = new Router({
       name: 'detail',
       path: '/detail/:id',
       component: () => import('@/components/Detail'),
+      meta: {
+        keepAlive: true,
+      }
     },
     {
       name: 'me',

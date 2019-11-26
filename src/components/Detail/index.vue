@@ -3,7 +3,9 @@
     <!-- <h1>{{this.$route.params.id}}</h1> -->
     <!-- 轮播图 -->
     <div id="detail-carousel">
-      <a class="back" @click="$router.back(-1)">返回</a>
+      <a class="back" @click="$router.back(-1)">
+        <van-icon name="arrow-left" />
+      </a>
       <van-swipe :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="(item,index) in phoneDetail.carousel" :key="index">
           <img :src="item" alt />
@@ -12,6 +14,8 @@
     </div>
     <!-- 返回顶部 -->
     <BackTop></BackTop>
+    <!-- 购物车导航条 -->
+    <CartNav @addToCart="addToCart"></CartNav>
     <section>
       <!-- 手机名称 -->
       <h1 id="phone-name">{{phoneDetail.name}}</h1>
@@ -73,7 +77,7 @@
               <div class="c-item">
                 <div class="c-mes">
                   <div class="c-left">
-                    <img :src="item.avatar" alt />
+                    <img v-lazy="item.avatar" alt />
                     <div>
                       <p>{{item.user}}</p>
                       <p>{{item.time}}</p>
@@ -88,7 +92,7 @@
                   <div>{{item.con}}</div>
                   <div class="c-img">
                     <div class="c-imgBox" alt v-for="(imgItem,i) in item.img" :key="i">
-                      <img :src="imgItem" />
+                      <img v-lazy="imgItem" />
                     </div>
                   </div>
                 </div>
@@ -205,6 +209,8 @@ export default {
   name: 'detail',
   data(){
     return {
+      // 记录第一次进入
+      firstEnter: true,
       paraOpt:{
         flag: false,
         title: '关键参数'
@@ -285,8 +291,12 @@ export default {
         this.curPhone.name = this.phoneDetail.name
         this.types = this.phoneDetail.types
         this.selectFirst(this.types[0])
+      // eslint-disable-next-line no-unused-vars
       }).catch(error =>{
-        window.console.log('获取不到数据',error)
+        setTimeout(()=>{
+          this.$toast.fail("获取数据失败")
+          this.$router.go(-1)
+        },1000)
       })
     },
     // 选取手机颜色
@@ -354,7 +364,6 @@ export default {
         this.$store.dispatch('addCart',newCurPhone)
         this.$toast.success('添加成功！');
         this.phoneOpt.flag = false
-        this.$router.push('/cart')
       }
     },
     // 深拷贝
@@ -375,10 +384,28 @@ export default {
     }
   },
   mounted(){
-    this.getDetail();
+    // this.firstEnter = true
   },
   components:{
     Option,
+  },
+  beforeRouteEnter(to, from, next){
+    if(from.name == 'index' || from.name == 'category'){
+      to.meta.keepAlive = false
+    }
+    next(vm => {
+      if(vm.firstEnter){
+        vm.getDetail()
+        vm.firstEnter = false
+        to.meta.keepAlive = true
+      }
+    })
+  },
+  activated(){
+    if(!this.$route.meta.keepAlive && !this.firstEnter){
+      this.getDetail()
+      this.$route.meta.keepAlive = true
+    }
   }
 }
 </script>
@@ -394,13 +421,16 @@ export default {
     .back {
       position: absolute;
       display: inline-block;
-      font-size: 0.3rem;
+      font-size: 0.4rem;
       padding: 0.2rem;
-      border-radius: 10%;
+      border-radius: 50%;
       color: #fff;
       background: rgba(0, 0, 0, 0.3);
       margin: 10px;
       z-index: 11;
+      i{
+        vertical-align: middle;
+      }
     }
     .van-swipe {
       width: 100%;

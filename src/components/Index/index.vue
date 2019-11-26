@@ -108,14 +108,10 @@ export default {
     },
     getPhoneList(){
       this.$axios.get('/api/phonelist').then(res => {
-        if(res.status === 200){
-          window.console.log(res.data)
-          this.carouselList = res.data.carousel
-          this.phoneList = res.data.phoneList
-          this.getHotphone();
-        }else{
-          window.console.log("获取数据失败")
-        }
+        // window.console.log(res.data)
+        this.carouselList = res.data.carousel
+        this.phoneList = res.data.phoneList
+        this.getHotphone();
       })
     }
   },

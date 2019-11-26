@@ -49,6 +49,7 @@
 <script>
 
 export default {
+  name: 'CommentList',
   data(){
     return {
       comment:

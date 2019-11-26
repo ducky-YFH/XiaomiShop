@@ -39,7 +39,7 @@ export default {
   position: fixed;
   z-index: 9999;
   right: 0.8rem;
-  bottom: 0.8rem;
+  bottom: 1.7rem;
   a {
     .van-icon-upgrade {
       border-radius: 50%;

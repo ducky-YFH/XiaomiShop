@@ -9,6 +9,9 @@
   "author": "dhs",
   "license": "ISC",
   "devDependencies": {
-    "express": "^4.17.1"
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "superagent": "^5.1.1",
+    "superagent-charset": "^1.2.0"
   }
 }
