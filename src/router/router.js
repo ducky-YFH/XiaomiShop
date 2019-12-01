@@ -6,7 +6,8 @@ Vue.use(Router)
 let router = new Router({
   linkActiveClass: 'link-active',
   mode: 'history',
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
+  base: 'dhsphone',
   routes: [
     {
       name: 'index',

@@ -551,6 +551,7 @@ export default {
             img {
               border-radius: 50%;
               width: 1.2rem;
+              height: 1.2rem;
             }
             div {
               margin-top: 0.15rem;

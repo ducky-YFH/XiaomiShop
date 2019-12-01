@@ -63,7 +63,7 @@
     <div id="phone-show">
       <div class="phone-hot">
         <router-link :to="`/detail/${hotPhone.id}`">
-          <img v-lazy="hotPhone.hotSrc" />
+          <img v-lazy="hotPhone.src" />
         </router-link>
       </div>
       <ul>
@@ -101,17 +101,15 @@ export default {
   },
   methods:{
     // 获取每日推荐的手机
-    getHotphone(){
-      this.hotPhone = this.phoneList.find(item => {
-        return item.hot
-      })
+    getHotphone(data){
+      this.hotPhone = data
     },
     getPhoneList(){
       this.$axios.get('/api/phonelist').then(res => {
         // window.console.log(res.data)
         this.carouselList = res.data.carousel
         this.phoneList = res.data.phoneList
-        this.getHotphone();
+        this.getHotphone(res.data.choiceness);
       })
     }
   },
